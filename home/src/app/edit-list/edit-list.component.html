@@ -1,0 +1,224 @@
+
+
+<div
+  class="modal fade"
+  id="modaladdnew"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add New</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form #addne="ngForm" (ngSubmit)="addnew()" novalidate>
+        <div class="modal-body">
+          <div class="md-form">
+            <input
+              type="text"
+              class="form-control"
+              required
+              placeholder="Enter Name"
+              name="name"
+              [(ngModel)]="new_ele.name"
+            />
+            <label>Name</label>
+          </div>
+          <br />
+          <div class="md-form">
+            <input
+              type="number"
+              class="form-control"
+              required
+              placeholder="Enter Price"
+              name="price"
+              [(ngModel)]="new_ele.price"
+            />
+            <label>Price</label>
+          </div>
+          <br />
+          <div class="md-form">
+            <input
+              type="text"
+              class="form-control"
+              required
+              placeholder="Enter Image Link"
+              name="link"
+              [(ngModel)]="new_ele.link"
+            />
+            <label>Image Link</label>
+          </div>
+          <br />
+          <div class="md-form">
+            <input
+              type="text"
+              class="form-control"
+              required
+              placeholder="Enter Category"
+              name="cat"
+              [(ngModel)]="new_ele.cat"
+            />
+            <label>Category</label>
+          </div>
+          <br />
+          <div class="md-form">
+            <input
+              type="number"
+              class="form-control"
+              required
+              placeholder="Enter Quantity"
+              name="quantity"
+              [(ngModel)]="new_ele.quantity"
+            />
+            <label>Quantity</label>
+          </div>
+          <br />
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button
+            [disabled]="addne.invalid"
+            type="submit"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#modaladdnew"
+            routerLink="/edit-list"
+          >
+            ADD
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="modaledit"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">EDIT</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form #editform="ngForm" (ngSubmit)="edit()" novalidate>
+        <div class="modal-body">
+          <div class="md-form">
+            <input
+              type="number"
+              class="form-control"
+              required
+              placeholder="Enter Quantity"
+              name="quantity"
+              [(ngModel)]="editedQuantity"
+            />
+            <label>Quantity</label>
+          </div>
+          <br />
+          <div class="md-form">
+            <input
+              type="number"
+              class="form-control"
+              required
+              placeholder="Enter Price"
+              name="price"
+              [(ngModel)]="editedPrice"
+            />
+            <label>Price</label>
+          </div>
+          <br />
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button
+            [disabled]="editform.invalid"
+            type="submit"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#modaledit"
+            routerLink="/edit-list"
+          >
+            CHANGE
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<a
+  href=""
+  class="btn btn-primary btn-rounded mb-4"
+  data-toggle="modal"
+  data-target="#modaladdnew"
+  style="margin-left: 10px"
+  >Add New</a
+>
+
+<div class="row content">
+  <div
+    class="container-fluid col-sm-10"
+    style="margin-left: 5px; text-align: center"
+  >
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Sl No</th>
+          <th scope="col">Name</th>
+          <th scope="col">Category</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of all_list; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ data.name }}</td>
+          <td>{{ data.cat }}</td>
+          <td>{{ data.price }}</td>
+          <td>{{ data.quantity }}</td>
+          <td>
+            <i
+              class="fa fa-edit"
+              [name]="data.name"
+              style="font-size: 24px; cursor: pointer"
+              data-toggle="modal"
+              data-target="#modaledit"
+              (click)="nametoedit=data.name"
+            ></i>
+          </td>
+          <td>
+            <i
+              class="fa fa-trash"
+              [title]="data.name"
+              (click)="del($event)"
+              style="font-size: 24px; cursor: pointer; color: red"
+            ></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

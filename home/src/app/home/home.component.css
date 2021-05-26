@@ -1,0 +1,36 @@
+.fix {
+  position: fixed;
+  left: 10px;
+}
+.panel:hover {
+  border-color: transparent;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.content {
+  margin-left: 13%;
+  width: 100%;
+}
+
+.dropdown{
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .fix {
+   display: none;
+  }
+  .dropdown
+  {
+    display: inherit;
+    margin-top: -2vh;
+
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+  }
+  .data {
+    margin-left: 0;
+    padding-top: 3vh;
+  }
+}

@@ -1,0 +1,113 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6">
+      <h2>Shipping</h2>
+      <br />
+      <form #orderdetail="ngForm" (ngSubmit)="placeOrder()" novalidate>
+        <div class="form-group">
+          <label>Name </label><br />
+          <input
+          required
+            class="form-control"
+            type="text"
+            name="name"
+            placeholder="Enter Your Name"
+            [(ngModel)]="orderDetails.name"
+          />
+        </div>
+        <div class="form-group">
+          <label>Address </label><br />
+          <input
+          required
+            class="form-control"
+            type="text"
+            name="address1"
+            placeholder="Address"
+            [(ngModel)]="address1"
+          /> <br>
+          <label>Landmark </label><br />
+          <input
+            class="form-control"
+            type="text"
+            name="address2"
+            placeholder="Landmark"
+            [(ngModel)]="address2"
+          />
+        </div>
+        <div class="form-group">
+          <label>City </label><br />
+          <input
+          required
+            class="form-control"
+            type="text"
+            name="city"
+            placeholder="Enter City"
+            [(ngModel)]="orderDetails.city"
+          />
+        </div>
+        <button [disabled]="orderdetail.invalid" class="btn btn-primary" type="submit">Place Order</button>
+      </form>
+    </div>
+    <div class="col-sm-6">
+      <br /><br /><br />
+      <div class="container" style="border: 2px solid lightgrey">
+        <h4>Order Summary</h4>
+        <h6>You have {{ orderlist.length }} item in your cart.</h6>
+        <table class="table">
+          <tbody>
+            <tr *ngFor="let item of orderlist">
+              <td>
+                <h6>{{ item.quantity }} x {{ item.name }}</h6>
+              </td>
+              <td>
+                <h6>${{ item.price * item.quantity | number: "1.2-2" }}</h6>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6>
+                  <b><i>Total Amount</i></b>
+                </h6>
+              </td>
+              <td>
+                <h6>
+                  <b
+                    ><i>${{ total | number: "1.2-2" }}</i></b
+                  >
+                </h6>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6>
+                  <b><i>Discount</i></b>
+                </h6>
+              </td>
+              <td>
+                <h6>
+                  <b
+                    ><i>{{ discount }}%</i></b
+                  >
+                </h6>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h6>
+                  <b><i>Discounted Amount</i></b>
+                </h6>
+              </td>
+              <td>
+                <h6>
+                  <b
+                    ><i>${{ discounted | number: "1.2-2" }}</i></b
+                  >
+                </h6>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

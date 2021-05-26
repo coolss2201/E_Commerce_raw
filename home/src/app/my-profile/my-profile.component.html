@@ -1,0 +1,99 @@
+<div class="container" style="text-align: center">
+  <br /><img
+    src="../../assets/image/img.jpg"
+    data-toggle="modal"
+    data-target="#myModal"
+    style="border-radius: 50%; height: 25vh"
+  />
+  <br />
+  <br />
+  <h4>{{ myprofile.name }}</h4>
+  <h5>{{ myprofile.number }}</h5>
+  <h5>{{ myprofile.email }}</h5>
+  <button
+    data-toggle="modal"
+    data-target="#editModal"
+    [title]="myprofile.name"
+    class="btn btn-primary"
+  >
+    Edit Profile
+  </button>
+  <hr />
+  <h5>My Order</h5>
+  <a routerLink='/my-order'>View all your order</a>
+  <hr>
+  <h5>My Cart</h5>
+  <a routerLink='/cart'>View your Cart</a><hr>
+</div>
+<!-- Modal -->
+<div id="myModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <img
+        src="../../assets/image/img.jpg"
+        alt="Image"
+        class="img-responsive"
+        style="object-fit: cover"
+      />
+    </div>
+  </div>
+</div>
+
+<div id="editModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h4>Edit</h4>
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #edit="ngForm" (ngSubmit)="change()" novalidate>
+          <div class="form-group">
+            <input
+              class="form-control"
+              placeholder="Enter Name"
+              type="text"
+              required
+              name="name"
+              [value]="myprofile.name"
+              [(ngModel)]="myprofile.name"
+            />
+            <label>Name</label>
+          </div>
+          <div class="form-group">
+            <input
+              class="form-control"
+              placeholder="Enter Number"
+              type="number"
+              required
+              name="number"
+              [value]="myprofile.number"
+              [(ngModel)]="myprofile.number"
+            />
+            <label>Number</label>
+          </div>
+          <div class="form-group">
+            <input
+              class="form-control"
+              placeholder="Enter Email"
+              type="email"
+              required
+              name="email"
+              [value]="myprofile.email"
+              [(ngModel)]="myprofile.email"
+            />
+            <label>Email</label>
+          </div>
+          <button class="btn btn-success" type="submit" [disabled]="edit.invalid">Change</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

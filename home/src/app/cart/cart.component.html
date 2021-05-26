@@ -1,0 +1,117 @@
+<div *ngIf="this.commereceservie.isCartEmpty" style="text-align: center">
+  <br />
+  <h3>Your Cart is empty!!!</h3>
+  <br />
+  <h4>Add element to Cart</h4>
+  <a routerLink="/" class="btn btn-primary">Shop Now</a>
+</div>
+<div *ngIf="!this.commereceservie.isCartEmpty" class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-8 sidenav">
+      <div class="container">
+        <div
+          class="row"
+          style="margin-bottom: 2vw; border: 2px solid lightgrey"
+          *ngFor="let dat of data"
+        >
+          <div class="col-sm-5">
+            <img
+              src="{{ dat.link }}"
+              class="img-responsive"
+              style="width: 100%; height: 25vh; object-fit: cover"
+            />
+          </div>
+          <div class="col-sm-4">
+            <h4>{{ dat.name }}</h4>
+            <p>$ {{ dat.price | number: "1.2-2" }}</p>
+            <a
+              href="/cart"
+              [id]="dat.name"
+              class="btn btn-danger"
+              role="button"
+              (click)="remove($event)"
+              >Remove from Cart</a
+            >
+          </div>
+          <div
+            class="col-sm-3"
+            style="text-align: center; justify-content: center"
+          >
+            <h4>Quantity</h4>
+            <button
+              (click)="plus($event)"
+              type="button"
+              [value]="dat.quantity + ' ' + dat.price"
+              class="btn btn-secondary"
+              [name]="dat.name"
+              style="width: 50%"
+            >
+              +
+            </button>
+            <br /><br /><span
+              style="font-weight: bold"
+              [title]="dat.name"
+              [class]="dat.name"
+              >1</span
+            ><br /><br />
+            <button
+              (click)="minus($event)"
+              [value]="dat.quantity + ' ' + dat.price"
+              type="button"
+              class="btn btn-secondary"
+              [name]="dat.name"
+              style="width: 50%"
+            >
+              -
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4" style="text-align: center">
+      <div>
+        <h3>Price Details</h3>
+        <hr />
+        <input
+          style="justify-content: center"
+          type="text"
+          placeholder="Enter Coupon Code"
+          id="coupon"
+        /><br /><br />
+        <button
+          style="margin: auto"
+          class="btn btn-success text-center"
+          type="button"
+          (click)="checkdiscount()"
+        >
+          Apply
+        </button>
+        <br /><br />
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <h6>Total Price ($)</h6>
+          <h6>Discount (%)</h6>
+
+          <hr />
+          <h5>Discounted Amount ($)</h5>
+        </div>
+        <div class="col-sm-6">
+          <h6>{{ total | number: "1.2-2" }}</h6>
+          <h6>{{ discount | number: "1.2-2" }}</h6>
+
+          <hr />
+          <h5>{{ discountedtotal | number: "1.2-2" }}</h5>
+        </div>
+      </div>
+      <br /><br />
+      <button
+        routerLink="/order"
+        (click)="order()"
+        class="btn btn-primary btn-block"
+      >
+        ORDER NOW
+      </button>
+    </div>
+  </div>
+</div>

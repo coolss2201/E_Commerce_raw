@@ -1,0 +1,145 @@
+<div class="dropdown">
+  <button
+    class="btn btn-block btn-secondary dropdown-toggle"
+    type="button"
+    id="dropdownMenuButton"
+    data-toggle="dropdown"
+    aria-haspopup="true"
+    aria-expanded="false"
+  >
+    Filter Product
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" (click)="sort('all')" style="cursor: pointer"
+      >All Categories</a
+    >
+    <a
+      class="dropdown-item"
+      *ngFor="let cat of category"
+      (click)="sort(cat)"
+      style="cursor: pointer"
+      >{{ cat }}</a
+    >
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row content data">
+    <div class="col-sm-3 sidenav fix">
+      <form #srch="ngForm" (ngSubmit)="search()">
+        <div
+          class="input-group"
+          style="
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+              0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          "
+        >
+          <input
+            required
+            type="search"
+            class="form-control"
+            name="name"
+            [(ngModel)]="find"
+            placeholder="Search"
+          />
+          <div class="input-group-btn">
+            <button
+              [disabled]="srch.invalid"
+              class="btn btn-primary"
+              type="submit"
+            >
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+      <small *ngIf="!found">No product found</small>
+      <br />
+      <div
+        class="list-group"
+        style="
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+            0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        "
+      >
+        <button
+          (click)="sort('all')"
+          class="list-group-item list-group-item-action active"
+        >
+          All Categories
+        </button>
+        <button
+          *ngFor="let cat of category"
+          (click)="sort(cat)"
+          class="list-group-item list-group-item-action"
+        >
+          {{ cat }}
+        </button>
+      </div>
+    </div>
+
+    <div class="col-sm-9 content">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4" *ngFor="let all of alldata; index as i">
+            <div class="panel panel_style">
+              <div class="panel-heading">
+                <img
+                  src="{{ all.link }}"
+                  class="img-responsive"
+                  style="width: 100%; height: 25vh; object-fit: cover"
+                  alt="Image"
+                />
+              </div>
+              <div
+                class="panel-body"
+                style="border: 1px solid lightgrey; padding-left: 2vw"
+              >
+                <br />
+                <h4>{{ all.name }}</h4>
+                <p>${{ all.price }}</p>
+              </div>
+              <div
+                class="panel-footer"
+                [id]="all.name.toString().replaceAll(' ', '_') + 'div'"
+              >
+                <button
+                  *ngIf="all.quantity > 0 && !all.incart"
+                  style="width: 100%"
+                  type="button"
+                  class="btn btn-secondary"
+                  [id]="all.name"
+                  (click)="addtocart($event)"
+                >
+                  ADD TO CART
+                </button>
+                <button
+                  *ngIf="all.quantity == 0 && !all.incart"
+                  style="width: 100%"
+                  type="button"
+                  class="btn btn-danger"
+                  [id]="all.name"
+                  disabled
+                >
+                  OUT OF STOCK
+                </button>
+
+                <a
+                  *ngIf="all.incart"
+                  [id]="all.name"
+                  style="width: 100%"
+                  class="btn btn-success"
+                  role="button"
+                  routerLink="/cart"
+                  >GO TO CART</a
+                >
+              </div>
+            </div>
+            <br />
+          </div>
+          <br />
+        </div>
+      </div>
+      <br />
+    </div>
+  </div>
+</div>
