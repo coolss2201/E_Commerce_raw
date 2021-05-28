@@ -11,35 +11,31 @@
     />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light new">
-      <div class="container-fluid">
+    <nav class="navbar navbar-expand navbar-light new">
         <div class="navbar-header navbar-brand">
           <i class="fa fa-scribd" aria-hidden="true"></i
           ><i class="fa fa-scribd" aria-hidden="true"></i>
         </div>
-        <button class="navbar-toggler mr-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li>
-            <a class="nav-link pad" routerLink="/"
-              ><i class="fa fa-home" aria-hidden="true"></i
-            ></a>
-          </li>
-          <li class="add">
-            <a class="nav-link pad" routerLink="/cart"
-              ><i class="fa fa-shopping-cart" aria-hidden="true"></i>
-              <span
-                class="badge badge-primary badge-pill"
-                [(innerText)]="num"
-              ></span
-            ></a>
-          </li>
-        </ul>
-      </div>
+        <div >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link pad" routerLink="/"
+                ><i class="fa fa-home" aria-hidden="true"></i
+              ></a>
+            </li>
+            <li class="nav-item add">
+              <a class="nav-link pad" routerLink="/cart"
+                ><i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                <span
+                  class="badge badge-primary badge-pill"
+                  [(innerText)]="num"
+                ></span
+              ></a>
+            </li>
+          </ul>
+        </div>
 
-        <div class="nav-item dropdown">
+        <div class="nav-item dropdown" style="position: fixed;right: 8px;">
           <img class="image" src="../assets/image/img.jpg" alt="Image" />
           <a
             class="nav-link dropdown-toggle"
@@ -62,9 +58,8 @@
             <a class="dropdown-item" href="#">Log Out</a>
           </div>
         </div>
-      </div>
     </nav>
-    
+
     <br /><br /><br />
     <div class="content">
       <router-outlet></router-outlet>

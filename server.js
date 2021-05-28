@@ -167,6 +167,10 @@ app.post("/editprofile", (req, res) => {
     }
   );
 });
+
+app.get("/:str",(req,res)=>{
+  res.render("index")
+})
 mongoose.connect(dburl, (err) => {
   console.log("database connected", err);
 });

@@ -6,7 +6,39 @@ import { Order } from '../order';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styles: [],
+  styles: [
+    `
+      img {
+        width: 100%;
+        height: 25vh;
+        object-fit: cover;
+      }
+      .btn-secondary {
+        width: 50%;
+      }
+      .pads{
+        margin-bottom: 2vw;
+      }
+      .col-sm-4{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+      @media screen and (max-width: 600px) {
+        img {
+          height:20vh;
+          width: 35vw;
+        }
+        .btn-danger {
+          width: 25vw;
+        }
+        .btn-secondary {
+          width: 100%;
+        }
+        .pads{
+          margin-bottom: 5vw;
+        }
+      }
+    `,
+  ],
 })
 export class CartComponent implements OnInit {
   public data: Product[] = [

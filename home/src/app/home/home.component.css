@@ -12,25 +12,23 @@
   width: 100%;
 }
 
-.dropdown{
+.dropdown {
   display: none;
 }
 
 @media only screen and (max-width: 600px) {
   .fix {
-   display: none;
+    display: none;
   }
-  .dropdown
-  {
+  .dropdown {
     display: inherit;
     margin-top: -2vh;
-
     position: fixed;
     z-index: 1;
     width: 100%;
   }
-  .data {
-    margin-left: 0;
+  .content {
+    margin-left: 0px;
     padding-top: 3vh;
   }
 }
